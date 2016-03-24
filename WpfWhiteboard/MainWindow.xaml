@@ -1,0 +1,55 @@
+﻿<Window x:Class="WpfWhiteboard.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfWhiteboard"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+		</Grid.RowDefinitions>
+		<Canvas x:Name="Whiteboard"
+			Background="White" 
+			MouseLeftButtonDown="Whiteboard_MouseLeftButtonDown"
+			MouseLeftButtonUp="Whiteboard_MouseLeftButtonUp"
+			MouseMove="Whiteboard_MouseMove"
+			MouseLeave="Whiteboard_MouseLeave"
+			MouseEnter="Whiteboard_MouseEnter">
+		</Canvas>
+		<Grid x:Name="OptionsPane" Background="Gray" Height="60" Grid.Row="2" Visibility="Collapsed">
+			<StackPanel x:Name="DecisionProgressGroup" Visibility="Collapsed">
+				<TextBlock Text="Current Vote state: " TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Stretch"></TextBlock>
+				<ProgressBar x:Name="DecisionProgress" Minimum="0" Maximum="1" Grid.ColumnSpan="2" Height="10" Value="0.5" Background="#FFFB0404" ></ProgressBar>
+			</StackPanel>
+			<Button x:Name="EraseButton" Click="EraseButtonClick" Content="Erase" Background="Transparent" BorderThickness="0" Grid.ColumnSpan="2" Visibility="Visible" />
+			<Grid x:Name="DecisionGroup" Visibility="Collapsed">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="*"/>
+				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="*"/>
+				</Grid.RowDefinitions>
+				<TextBlock Text="An erase voting has started:" Grid.ColumnSpan="2" HorizontalAlignment="Center" TextAlignment="Center" FontSize="14" ></TextBlock>
+				<Button x:Name="AcceptEraseButton" Click="AcceptEraseButtonClick" Content="Accept Erase" Background="Green"  BorderThickness="0" Grid.Row="2" />
+				<Button x:Name="RefuseEraseButton" Click="RefuseEraseButtonClick"  Content="Refuse Erase" Background="Red" Grid.Column="1" BorderThickness="0" Grid.Row="2" />
+			</Grid>
+
+		</Grid>
+		<Button HorizontalAlignment="Stretch"
+				Background="Gray"
+				Content="&#xE10C;"
+				FontFamily="Segoe MDL2 Assets"
+				FontSize="25"
+				BorderThickness="0"
+				Grid.Row="1"
+				HorizontalContentAlignment="Right"
+				Padding="15, 0, 15, 0"
+				Click="OptionsButtonClicked"/>
+	</Grid>
+</Window>
